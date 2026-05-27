@@ -1,30 +1,30 @@
 "use client"
 
-import { getNotes, NoteApiResponse } from '@/lib/api'
-import { useQuery } from '@tanstack/react-query'
-import React, { useEffect, useRef, useState } from 'react'
-import { useDebouncedCallback } from 'use-debounce'
+import { getNotes, NoteApiResponse } from "@/lib/api"
+import { useQuery } from "@tanstack/react-query"
+import React, { useEffect, useRef, useState } from "react"
+import { useDebouncedCallback } from "use-debounce"
 import css from "./Notes.module.css"
-import SearchBox from '../components/SearchBox/SearchBox'
-import Pagination from '../components/Pagination/Pagination'
-import NoteList from '../components/NoteList/NoteList'
-import Modal from '../components/Modal/Modal'
-import NoteForm from '../components/NoteForm/NoteForm'
+import SearchBox from "../../components/SearchBox/SearchBox"
+import Pagination from "../../components/Pagination/Pagination"
+import NoteList from "../../components/NoteList/NoteList"
+import Modal from "../../components/Modal/Modal"
+import NoteForm from "../../components/NoteForm/NoteForm"
 
 const Notes = () => {
-    const [page, setPage] = useState(1)
-      const [isOpen, setIsOpen] = useState(false)
-      const [inputValue, setInputValue] = useState("")
-      const [searchQuery, setSearchQuery] = useState(``)
-    
-      const prevDataRef = useRef<NoteApiResponse | null>(null)
-    
-      const debouncedSetSearchQuery = useDebouncedCallback((value: string) => {
-        setSearchQuery(value)
-        setPage(1)
-      }, 300)
+  const [page, setPage] = useState(1)
+  const [isOpen, setIsOpen] = useState(false)
+  const [inputValue, setInputValue] = useState("")
+  const [searchQuery, setSearchQuery] = useState(``)
 
-      const handleSearchChange = (value: string) => {
+  const prevDataRef = useRef<NoteApiResponse | null>(null)
+
+  const debouncedSetSearchQuery = useDebouncedCallback((value: string) => {
+    setSearchQuery(value)
+    setPage(1)
+  }, 300)
+
+  const handleSearchChange = (value: string) => {
     setInputValue(value)
     debouncedSetSearchQuery(value)
   }
