@@ -17,6 +17,7 @@ const NoteDetails = () => {
   } = useQuery({
     queryKey: ["note", id],
     queryFn: () => getNoteItem(id),
+    refetchOnMount: false
   })
 
   if (isLoading) {
